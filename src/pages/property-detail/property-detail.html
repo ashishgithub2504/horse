@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{property.name}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngIf="property.id">
+        <img src="{{property.image}}"/>
+        <ion-card-content>
+            <h2 class="card-title">{{property.name}}</h2>
+            <p><b>CHIP ID:</b> {{property.chipid}}</p>
+			<p><b>FEI Number:</b> {{property.fei_number}}</p>
+			<p><b>BIRTH Name:</b> {{property.birth_name}}</p>
+			<p><b>DOB:</b> {{property.dob}}</p>
+			<p><b>Height:</b> {{property.height}}</p>
+			<p><b>Sire:</b> {{property.Sire}}</p>
+			<p><b>Dam:</b> {{property.dam}}</p>
+			<p><b>Breed:</b> {{property.breed}}</p>
+			<p><b>Passport Number:</b> {{property.passport_number}}</p>
+			<p><b>Sex:</b> {{property.sex}}</p>
+			<p><b>Color:</b> {{property.color}}</p>
+			<p><b>Breed:</b> {{property.breed}}</p>
+			<p><b>Breed:</b> {{property.breed}}</p>
+			<p><b>Breed:</b> {{property.breed}}</p>
+			<p><b>Breed:</b> {{property.breed}}</p>
+			
+			
+        </ion-card-content>
+		
+
+        <ion-item>
+            <button ion-button icon-left (click)="favorite(property)" clear item-left>
+                <ion-icon name="star"></ion-icon>
+                Favorite
+            </button>
+            <button ion-button icon-left (click)="share(property)" clear item-right>
+                <ion-icon name="share"></ion-icon>
+                Share
+            </button>
+        </ion-item>
+
+    </ion-card>
+</ion-content>
