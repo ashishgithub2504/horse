@@ -27,8 +27,10 @@
         </ion-item-sliding>
 
     </ion-list>
-
-    <div *ngIf="viewMode==='map'" style="width:100%;height:100%;" id="map"></div>
+	<ion-infinite-scroll (ionInfinite)="doInfinite($event)" ng-if="!moredata">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+ 
 
 </ion-content>
 

@@ -5,15 +5,16 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {PropertyListPage} from '../pages/property-list/property-list';
 import {BrokerListPage} from '../pages/broker-list/broker-list';
-import {FavoriteListPage} from '../pages/favorite-list/favorite-list';
+//import {FavoriteListPage} from '../pages/favorite-list/favorite-list';
 import {WelcomePage} from '../pages/welcome/welcome';
-import {AboutPage} from '../pages/about/about';
-import {HorsePage} from '../pages/horse/horse';
+//import {AboutPage} from '../pages/about/about';
+//import {HorsePage} from '../pages/horse/horse';
 
 export interface MenuItem {
     title: string;
     component: any;
     icon: string;
+	
 }
 
 @Component({
@@ -36,7 +37,7 @@ export class MyApp {
         this.appMenuItems = [
             {title: 'Home', component: WelcomePage, icon: 'home'},
 			{title: 'Horse Manager', component: PropertyListPage, icon: 'home'},
-			// {title: 'Brokers', component: BrokerListPage, icon: 'people'},
+			{title: 'Passport Manager', component: BrokerListPage, icon: 'star'},
             // {title: 'Favorites', component: FavoriteListPage, icon: 'star'},
             // {title: 'Home', component: WelcomePage, icon: 'checkmark-circle'},
         ];

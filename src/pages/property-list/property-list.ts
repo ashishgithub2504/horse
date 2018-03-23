@@ -3,8 +3,8 @@ import {Config, NavController} from 'ionic-angular';
 import {PropertyService} from '../../providers/property-service-mock';
 import {PropertyDetailPage} from '../property-detail/property-detail';
 import { Http } from '@angular/http';
-import leaflet from 'leaflet';
-import 'rxjs/add/operator/map';
+//import leaflet from 'leaflet';
+//import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'page-property-list',
@@ -16,6 +16,7 @@ export class PropertyListPage {
     filterdata: Array<any>;
     searchKey: string = "";
     viewMode: string = "list";
+	pageNo: number = 1;
     map;
     markersGroup;
 
@@ -28,7 +29,20 @@ export class PropertyListPage {
 		console.log(property);
         this.navCtrl.push(PropertyDetailPage, property);
     }
+	
+	loadMore() {
+		this.findLoadMore();
+		console.log(this.pageNo);
+	}
+	
+	doInfinite(infiniteScroll) {
+	  
+		this.pageNo++;
+		this.loadMore();
+       infiniteScroll.complete();
 
+	}
+  
     onInput(event) {
 		
 		let key: string = this.searchKey.toUpperCase();
@@ -50,14 +64,8 @@ export class PropertyListPage {
     }
 
     findAll() {
-		// this.http.get('http://localhost/horse/api/horses/index').map(res => res.json()).subscribe(
-			// data => {
-				// this.properties = data.data;
-				// this.filterdata = data.data;
-			// }
-		// );
-	
-	this.service.findAll()
+		
+	this.service.findAll(this.pageNo)
      .subscribe(
        data => {
 		   this.properties = data.data;
@@ -71,6 +79,22 @@ export class PropertyListPage {
             // .then(data => this.properties = data)
             // .catch(error => alert(error));
     }
+	
+	findLoadMore(){
+		this.service.findAll(this.pageNo)
+			 .subscribe(
+			 
+			   data => {
+				   for(let item of data.data) {
+						this.properties.push(item);
+				   }
+				   console.log(this.properties);
+				   //this.filterdata = data.data;
+				 // set success message and pass true paramater to persist the message after redirecting to the login page
+			   },(error: any) => {
+				 
+			   });
+	}
 
     // showMap() {
         // setTimeout(() => {

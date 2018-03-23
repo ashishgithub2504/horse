@@ -1,29 +1,34 @@
 import {Injectable} from '@angular/core';
 import properties from './mock-properties';
-import { Http ,Response, RequestOptions} from '@angular/http';
-import leaflet from 'leaflet';
-import 'rxjs/add/operator/map';
+import { Http ,Response} from '@angular/http';
+//import leaflet from 'leaflet';
+//import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PropertyService {
 
   favoriteCounter: number = 0;
   favorites: Array<any> = [];
-	
+  BASE = '';
+  pageNumber : number = 0;
 	constructor( public http: Http) {
-			console.log('Hello PropertyProvider Provider');
+			 console.log('Hello Property Provider');
+			this.BASE = 'http://mrmstables.phpdev.co.in/api/';
     }
 	
-  findAll() {
-	return this.http.get('http://localhost/horse/api/horses/index')
+  findAll(pageNumber) {
+	 
+	return this.http.get(this.BASE+'horses/index?page='+pageNumber)
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         let user = response.json();
+		    console.log(user);
         return user;
       });
 	  
   }
 
+  
   findById(id) {
     return Promise.resolve(properties[id - 1]);
   }
